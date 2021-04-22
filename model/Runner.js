@@ -1,4 +1,4 @@
-import { dbManager } from 'model/DBManager';
+import { dbManager } from '../model/DBManager';
 
 const RUNNER_KEY = "@runner"
 

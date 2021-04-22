@@ -1,7 +1,7 @@
-import { dbManager } from 'model/DBManager';
-import Drink from 'model/Drink';
-import PairItem from 'model/PairItem';
-import { getGlobalStations } from 'model/Station';
+import { dbManager } from '../model/DBManager';
+import Drink from '../model/Drink';
+import PairItem from '../model/PairItem';
+import { getGlobalStations } from '../model/Station';
 
 export default class Inventory {
     id;         // String

@@ -7,45 +7,45 @@ import { useFonts } from 'expo-font';
 import { AppLoading } from 'expo';
 
 import DummyScreen from './screens/DummyScreen';
-import TotalInventoryScreen from './screens/TotalInventoryScreen';
-import TotalInventoryStationOverviewScreen from './screens/TotalInventoryStationOverviewScreen';
-import TotalStationInventoryDetailedDataScreen from './screens/TotalStationInventoryDetailedDataScreen';
-import AssignInventoryCreateStationScreen from './screens/AssignInventoryCreateStationScreen';
+// import TotalInventoryScreen from './screens/TotalInventoryScreen';
+// import TotalInventoryStationOverviewScreen from './screens/TotalInventoryStationOverviewScreen';
+// import TotalStationInventoryDetailedDataScreen from './screens/TotalStationInventoryDetailedDataScreen';
+// import AssignInventoryCreateStationScreen from './screens/AssignInventoryCreateStationScreen';
 
 //Manager Screen
-import ManagerStationInventoryScreen from './screens/ManagerStationInventoryScreen';
-import ManagerReturnInventoryScreen from './screens/ManagerReturnInventoryScreen';
-import ManagerAssignInventoryScreen from './screens/ManagerAssignInventoryScreen';
-import ManagerDashBoardScreen from './screens/ManagerDashBoardScreen';
-import ManagerAvailableInventoryScreen from './screens/ManagerAvailableInventoryScreen';
-import ManagerAvailableInventoryDetailedDataScreen from './screens/ManagerAvailableInventoryDetailedDataScreen';
-import ManagerPendingInventoryScreen from './screens/ManagerPendingInventoryScreen';
-import ManagerIndivitualStationDataScreen from './screens/ManagerIndividualStationDataScreen';
+// import ManagerStationInventoryScreen from './screens/ManagerStationInventoryScreen';
+// import ManagerReturnInventoryScreen from './screens/ManagerReturnInventoryScreen';
+// import ManagerAssignInventoryScreen from './screens/ManagerAssignInventoryScreen';
+// import ManagerDashBoardScreen from './screens/ManagerDashBoardScreen';
+// import ManagerAvailableInventoryScreen from './screens/ManagerAvailableInventoryScreen';
+// import ManagerAvailableInventoryDetailedDataScreen from './screens/ManagerAvailableInventoryDetailedDataScreen';
+// import ManagerPendingInventoryScreen from './screens/ManagerPendingInventoryScreen';
+// import ManagerIndivitualStationDataScreen from './screens/ManagerIndividualStationDataScreen';
 
 //Server Screen
-import ServerConfirmInventoryScreen from './screens/ServerConfirmInventoryScreen';
-import ServerReturnInventoryScreen from './screens/ServerReturnInventoryScreen';
-import ServerDashBoardScreen from './screens/ServerDashBoardScreen';
-import ServerPendingInventoryScreen from './screens/ServerPendingInventoryScreen';
-import ServerPendingInventoryHistory from './screens/ServerPendingInventoryHistory';
-import ServerIndividualDataScreen from './screens/ServerIndividualStationDataScreen';
-import ServerStationInventoryScreen from './screens/ServerIndividualStationDataScreen';
-import ServerRequestInventoryScreen from './screens/ServerRequestInventoryScreen';
+// import ServerConfirmInventoryScreen from './screens/ServerConfirmInventoryScreen';
+// import ServerReturnInventoryScreen from './screens/ServerReturnInventoryScreen';
+// import ServerDashBoardScreen from './screens/ServerDashBoardScreen';
+// import ServerPendingInventoryScreen from './screens/ServerPendingInventoryScreen';
+// import ServerPendingInventoryHistory from './screens/ServerPendingInventoryHistory';
+// import ServerIndividualDataScreen from './screens/ServerIndividualStationDataScreen';
+// import ServerStationInventoryScreen from './screens/ServerIndividualStationDataScreen';
+// import ServerRequestInventoryScreen from './screens/ServerRequestInventoryScreen';
 
 //Runner Screen
-import RunnerDashBoardScreen from 'screens/RunnerDashBoardScreen';
-import RunnerRequestInventoryScreen from './screens/RunnerRequestInventoryScreen';
-import RunnerReturnInventoryScreen from './screens/RunnerReturnInventoryScreen';
-import RunnerHistoryScreen from './screens/RunnerHistoryScreen';
-import RunnerStationInventoryScreen from './screens/RunnerStationInventoryScreen';
+// import RunnerDashBoardScreen from './screens/RunnerDashBoardScreen';
+// import RunnerRequestInventoryScreen from './screens/RunnerRequestInventoryScreen';
+// import RunnerReturnInventoryScreen from './screens/RunnerReturnInventoryScreen';
+// import RunnerHistoryScreen from './screens/RunnerHistoryScreen';
+// import RunnerStationInventoryScreen from './screens/RunnerStationInventoryScreen';
 import HyppoeHeader from './components/HyppoeHeader';
-import IndividualStationInventoryDetailedDataScreen from './screens/IndividualStationInventoryDetailedDataScreen';
+// import IndividualStationInventoryDetailedDataScreen from './screens/IndividualStationInventoryDetailedDataScreen';
 
-import StationRunnersScreen from './screens/StationRunnersScreen';
+// import StationRunnersScreen from './screens/StationRunnersScreen';
 
-import ReturnInventoryDetailedDataScreen from './screens/ReturnInventoryDetailedDataScreen';
-import StationAlertsScreen from './screens/StationAlertsScreen';
-import RunnerTaskScreen from './screens/RunnerTaskScreen';
+// import ReturnInventoryDetailedDataScreen from './screens/ReturnInventoryDetailedDataScreen';
+// import StationAlertsScreen from './screens/StationAlertsScreen';
+// import RunnerTaskScreen from './screens/RunnerTaskScreen';
 
 //Pick Your Roles
 import PickYourRole from './screens/PickYourRole';
@@ -113,7 +113,7 @@ export default function App() {
 									return <HyppoeHeader navigation={navigation} mode="full"/>;
 								}
 							}}/>
-						<Stack.Screen
+						{/* <Stack.Screen
 							name="Manager Dashboard"
 							component={ManagerDashBoardScreen}
 							options={{
@@ -366,7 +366,7 @@ export default function App() {
 									return <HyppoeHeader navigation={navigation} mode="full"/>;
 								}
 							}}
-						/>
+						/> */}
 					</Stack.Navigator>
 				</NavigationContainer>
 			</View>

@@ -1,9 +1,9 @@
 import * as firebase from 'firebase';
 import 'firebase/firestore';
-import { dbManager } from 'model/DBManager';
-import Station from 'model/Station';
-import Inventory from 'model/Inventory';
-import Job from 'model/Job';
+import { dbManager } from '../model/DBManager';
+import Station from '../model/Station';
+import Inventory from '../model/Inventory';
+import Job from '../model/Job';
 
 const EVENT_KEY = "@event"
 

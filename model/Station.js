@@ -1,9 +1,9 @@
-import { dbManager } from 'model/DBManager';
-import Drink from 'model/Drink';
-import PairItem from 'model/PairItem';
-import Server from 'model/Server';
-import { globalEvent } from 'model/Event';
-import Runner, { globalRunner } from 'model/Runner';
+import { dbManager } from '../model/DBManager';
+import Drink from '../model/Drink';
+import PairItem from '../model/PairItem';
+import Server from '../model/Server';
+import { globalEvent } from '../model/Event';
+import Runner, { globalRunner } from '../model/Runner';
 //import { get } from 'http';
 
 const STATION_KEY = "@station"
