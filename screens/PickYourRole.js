@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, Image, TouchableHighlight, TouchableOpacity } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import ShadowedBox from 'components/ShadowedBox';
-import Station from 'model/Station';
-import Event from 'model/Event';
+import ShadowedBox from '../components/ShadowedBox';
+import Station from '../model/Station';
+import Event from '../model/Event';
 
 
 export default function PickYourRole({ navigation }) {
@@ -59,7 +59,7 @@ export default function PickYourRole({ navigation }) {
 						justifyContent: 'center'
 					}}>
 						<Image
-							source={require('assets/Server.png')}
+							source={require('../assets/Server.png')}
 							style={{
 								width: '50%',
 								height: '50%',
@@ -118,7 +118,7 @@ export default function PickYourRole({ navigation }) {
 						justifyContent: 'center'
 					}}>
 						<Image
-							source={require('assets/Runner.png')}
+							source={require('../assets/Runner.png')}
 							style={{
 								width: '50%',
 								height: '50%',
@@ -178,7 +178,7 @@ export default function PickYourRole({ navigation }) {
 						justifyContent: 'center'
 					}}>
 						<Image
-							source={require('assets/Manager.png')}
+							source={require('../assets/Manager.png')}
 							style={{
 								width: '50%',
 								height: '50%',

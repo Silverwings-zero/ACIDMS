@@ -1,6 +1,6 @@
-import { dbManager } from 'model/DBManager';
-import Drink from 'model/Drink';
-import PairItem from 'model/PairItem';
+import { dbManager } from '../model/DBManager';
+import Drink from '../model/Drink';
+import PairItem from '../model/PairItem';
 
 const SERVER_KEY = "@server"
 

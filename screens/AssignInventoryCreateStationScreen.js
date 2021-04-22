@@ -1,16 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import ShadowedBox from 'components/ShadowedBox';
-import StationBox from 'components/StationBox';
-import DrinkBox from 'components/DrinkBox';
-import InventoryTopBox from 'components/InventoryTopBox';
-import BottomBlueButton from 'components/BottomBlueButton';
-import StationModal from 'components/StationModal';
-import ConfirmInventoryModal from 'components/ConfirmInventoryModal';
+import ShadowedBox from './components/ShadowedBox';
+import StationBox from './components/StationBox';
+import DrinkBox from './components/DrinkBox';
+import InventoryTopBox from './components/InventoryTopBox';
+import BottomBlueButton from './components/BottomBlueButton';
+import StationModal from './components/StationModal';
+import ConfirmInventoryModal from './components/ConfirmInventoryModal';
 import update from 'immutability-helper';
-import { globalInventory } from 'model/Inventory';
-import { getGlobalStations } from 'model/Station';
+import { globalInventory } from './model/Inventory';
+import { getGlobalStations } from './odel/Station';
 
 export default class AssignInventoryCreateStationScreen extends React.Component {
     state = {

@@ -2,10 +2,10 @@ import { StyleSheet, Text, View, A } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Event from 'model/Event';
-import Manager from 'model/Manager';
-import Server from 'model/Server';
-import Runner from 'model/Runner';
+import Event from '../model/Event';
+import Manager from '../model/Manager';
+import Server from '../model/Server';
+import Runner from '../model/Runner';
 
 
 export default function DummyScreen({ navigation }) {

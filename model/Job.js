@@ -1,8 +1,8 @@
-import { dbManager } from 'model/DBManager';
-import Drink from 'model/Drink';
-import PairItem from 'model/PairItem';
-import Runner from 'model/Runner';
-import { globalStations } from 'model/Station';
+import { dbManager } from '../model/DBManager';
+import Drink from '../model/Drink';
+import PairItem from '../model/PairItem';
+import Runner from '../model/Runner';
+import { globalStations } from '../model/Station';
 import { globalEvent } from './Event';
 
 export default class Job {

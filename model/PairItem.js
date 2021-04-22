@@ -1,5 +1,5 @@
-import { dbManager } from 'model/DBManager';
-import PairItemType from 'model/PairItemType';
+import { dbManager } from '../model/DBManager';
+import PairItemType from '../model/PairItemType';
 
 export default class PairItem {
     pairItemType;   // PairItemType

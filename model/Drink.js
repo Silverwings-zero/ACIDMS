@@ -1,5 +1,5 @@
-import { dbManager } from 'model/DBManager';
-import DrinkType from 'model/DrinkType';
+import { dbManager } from '../model/DBManager';
+import DrinkType from '../model/DrinkType';
 
 
 export default class Drink {

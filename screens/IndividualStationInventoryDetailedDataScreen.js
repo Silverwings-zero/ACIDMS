@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import ShadowedBox from 'components/ShadowedBox';
+import ShadowedBox from './components/ShadowedBox';
 import { ScrollView } from 'react-native-gesture-handler';
 import Accordion from 'react-native-collapsible/Accordion';
 import Station, { getGlobalStation } from 'model/Station';

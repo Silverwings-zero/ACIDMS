@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableHighlight, TouchableOpacity } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import ShadowedBox from 'components/ShadowedBox';
-import Station from 'model/Station';
+import ShadowedBox from '../components/ShadowedBox';
+import Station from '../model/Station';
 
 
 export default function PickYourTablet({route, navigation }) {
@@ -32,7 +32,7 @@ export default function PickYourTablet({route, navigation }) {
 					justifyContent: 'center'
 				}}>
 					<Image
-						source={require('assets/Server.png')}
+						source={require('../assets/Server.png')}
 						style={{
 							width: '50%',
 							height: '50%',
