@@ -2,6 +2,9 @@ import { StyleSheet, Text, View, TextInput, Image, TouchableHighlight, Touchable
 import React, { useState, useEffect } from 'react';
 import ShadowedBox from '../components/ShadowedBox';
 import DropDownPicker from 'react-native-dropdown-picker';
+import DatePicker from 'react-native-datepicker';
+//import TimePicker from 'react-time-picker';
+
 import Station from '../model/Station';
 
 
@@ -11,7 +14,10 @@ export default function PickYourRunner({route, navigation }) {
 	const [Distance, setDistance] = useState('');
 	const [sDate, setsDate] = useState('');
 	const [eDate, seteDate] = useState('');
+	const [sTime, setsTime] = useState('');
+	const [eTime, seteTime] = useState('');
 	const [Category, setCategory] = useState('');
+	const [Neighborhood, setNeighborhood] = useState('');
 	//const [runners, setrunners] = useState([]);
 
 	useEffect(() => {
@@ -78,11 +84,44 @@ export default function PickYourRunner({route, navigation }) {
 						Date
 					</Text>
 
+					<DatePicker
+      					date={sDate}
+						onDateChange={setsDate}
+						defaultValue={sDate}
+						/>
+
+					<Text style={{
+						fontSize: 17, 
+						fontWeight:"bold",
+						margin: 4,
+					}}>
+						To 
+					</Text>
+
+					<DatePicker
+      					date={eDate}
+						onDateChange={seteDate}
+						defaultValue={eDate}
+						/>
+				</View>
+			</ShadowedBox>
+			
+			<ShadowedBox width={'80%'} height={'10%'} margin={10}>
+				<View style={styles.rowView}>
+
+					<Text style={{
+						fontSize: 17, 
+						fontWeight:"bold",
+						margin: 4,
+					}}>
+						Time
+					</Text>
+
 					<TextInput
-							style={{height: 35}}
-							placeholder="MM/DD/YY"
-							onChangeText={sDate => setsDate(sDate)}
-							defaultValue={sDate}
+							style={{height: 35, marginRight: 30}}
+							placeholder="HH:MM"
+							onChangeText={sTime => setsTime(sTime)}
+							defaultValue={sTime}
 						/>
 
 					<Text style={{
@@ -95,10 +134,32 @@ export default function PickYourRunner({route, navigation }) {
 
 					<TextInput
 							style={{height: 35, marginRight: 30}}
-							placeholder="MM/DD/YY"
-							onChangeText={eDate => seteDate(eDate)}
-							defaultValue={eDate}
+							placeholder="HH:MM"
+							onChangeText={eTime => seteTime(eTime)}
+							defaultValue={eTime}
 						/>
+				</View>
+			</ShadowedBox>
+
+			<ShadowedBox width={'80%'} height={'10%'} margin={10}>
+				<View style={styles.rowView}>
+
+					<Text style={{
+						fontSize: 17, 
+						fontWeight:"bold",
+						margin: 8,
+					}}>
+						Neighborhood
+					</Text>
+
+					<TextInput
+							style={{height: 35}}
+							placeholder="which neighborhood"
+							onChangeText={Neighborhood => setNeighborhood(Neighborhood)}
+							defaultValue={Neighborhood}
+							keyboardType = "numeric"
+						/>
+
 				</View>
 			</ShadowedBox>
 
@@ -131,7 +192,7 @@ export default function PickYourRunner({route, navigation }) {
 						]}
 						defaultIndex={0}
 						containerStyle={{height: 40, width: 150}}
-						onChangeItem={Category => setCategory(item.value)}
+						onChangeItem={item => setCategory(item.value)}
 					/>
 
 				</View>
@@ -140,9 +201,33 @@ export default function PickYourRunner({route, navigation }) {
 			<ShadowedBox 
 				width={'30%'} 
 				height={'7%'} 
-				margin={150} 
+				margin={120} 
 				touchable
-				onPress={() => navigation.navigate('dataListView', {zipcode: zipcode})}>
+
+				onPress={() => {
+					console.log(typeof(text))
+					if (Distance.length == 0 && 
+						sDate.length == 0 && 
+						eDate.length ==0 && 
+						sTime.length == 0 && 
+						eTime.length ==0 && 
+						Neighborhood.length == 0 && 
+						Category.length == 0){
+						alert('must enter at least one field for query');
+					} else {
+						navigation.navigate('dataListView', {
+							zipcode: zipcode, 
+							Distance: Distance, 
+							sDate: sDate,
+							eDate: eDate,
+							sTime: sTime,
+							eTime: eTime,
+							Neighborhood: Neighborhood,
+							Category: Category
+						})
+					}
+				}}>
+
 				<View style={{
 					justifyContent: 'flex-start',
 					marginLeft: "10%"

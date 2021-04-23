@@ -6,7 +6,8 @@ import Station, {getGlobalStations}from '../model/Station';
 
 export default function ManagerIndividualStationDataScreen({ route, navigation }) {
 	const [stationModalVisible, setStationModalVisible] = useState(false);
-	const {zipcode} = route.params
+	const {zipcode, Distance, sDate, eDate, sTime, eTime, Neighborhood, Category} = route.params
+	console.log(zipcode, Distance, sDate.length, eDate, sTime, eTime, Neighborhood, Category)
 	// //const stationId = navigation.state
 	// const stationId = route.params['stationId'];
 	// //const stationID = JSON.stringify(stationId)
