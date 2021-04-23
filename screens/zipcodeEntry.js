@@ -1,8 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableHighlight, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import ShadowedBox from '../components/ShadowedBox';
-import Station from '../model/Station';
-import Event from '../model/Event';
+
 
 
 export default function PickYourRole({ navigation }) {
@@ -47,10 +46,11 @@ export default function PickYourRole({ navigation }) {
 						justifyContent: 'center'
 					}}>
 						<TextInput
-							style={{height: 40}}
+							style={{height: 40, width: 100}}
 							placeholder="Give a zipcode"
 							onChangeText={text => setText(text)}
 							defaultValue={text}
+							keyboardType = "numeric"
 						/>
 					</View>
 				</ShadowedBox>

@@ -1,11 +1,10 @@
-import { StyleSheet, Text, View, TextInput, Image, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TextInput, Image, TouchableHighlight, TouchableOpacity } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import ShadowedBox from '../components/ShadowedBox';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DatePicker from 'react-native-datepicker';
 //import TimePicker from 'react-time-picker';
 
-import Station from '../model/Station';
 
 
 export default function PickYourRunner({route, navigation }) {
@@ -28,7 +27,7 @@ export default function PickYourRunner({route, navigation }) {
 
 	
 	return (
-		<View style={styles.container}>
+		<ScrollView>
 			<ShadowedBox width={'80%'} height={'10%'} margin={10}>
 				<View style={styles.rowView}>
 
@@ -157,7 +156,6 @@ export default function PickYourRunner({route, navigation }) {
 							placeholder="which neighborhood"
 							onChangeText={Neighborhood => setNeighborhood(Neighborhood)}
 							defaultValue={Neighborhood}
-							keyboardType = "numeric"
 						/>
 
 				</View>
@@ -245,7 +243,7 @@ export default function PickYourRunner({route, navigation }) {
 			</ShadowedBox>
 			
 
-		</View>
+		</ScrollView>
 	);
 }
 
