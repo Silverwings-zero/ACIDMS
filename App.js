@@ -48,11 +48,10 @@ import HyppoeHeader from './components/HyppoeHeader';
 // import RunnerTaskScreen from './screens/RunnerTaskScreen';
 
 //Pick Your Roles
-import PickYourRole from './screens/PickYourRole';
-import ServerPickYourStation from './screens/ServerPickYourStation';
-import PickYourTablet from './screens/PickYourTablet';
-import RunnerPickYourStation from './screens/RunnerPickYourStation';
-import PickYourRunner from './screens/PickYourRunner';
+import zipcodeEntry from './screens/zipcodeEntry';
+import queryFields from './screens/queryFields';
+import dataListView from './screens/dataListView';
+import dataMapView from './screens/dataMapView';
 
 
 const Stack = createStackNavigator();
@@ -74,40 +73,32 @@ export default function App() {
 							name="Dummy Page"
 							component={DummyScreen}/>
 						<Stack.Screen
-							name="Pick Your Role"
-							component={PickYourRole}
+							name="zipcodeEntry"
+							component={zipcodeEntry}
 							options={{
 								header: ({ navigation, props }) => {
 									return <HyppoeHeader navigation={navigation} mode="full"/>;
 								}
 							}}/>
 						<Stack.Screen
-							name="Server Pick Your Station"
-							component={ServerPickYourStation}
+							name="dataListView"
+							component={dataListView}
 							options={{
 								header: ({ navigation, props }) => {
 									return <HyppoeHeader navigation={navigation} mode="full"/>;
 								}
 							}}/>
 						<Stack.Screen
-							name="Runner Pick Your Station"
-							component={RunnerPickYourStation}
+							name="dataMapView"
+							component={dataMapView}
 							options={{
 								header: ({ navigation, props }) => {
 									return <HyppoeHeader navigation={navigation} mode="full"/>;
 								}
 							}}/>
 						<Stack.Screen
-							name="Pick Your Tablet"
-							component={PickYourTablet}
-							options={{
-								header: ({ navigation, props }) => {
-									return <HyppoeHeader navigation={navigation} mode="full"/>;
-								}
-							}}/>
-						<Stack.Screen
-							name="Pick Your Runner"
-							component={PickYourRunner}
+							name="queryFields"
+							component={queryFields}
 							options={{
 								header: ({ navigation, props }) => {
 									return <HyppoeHeader navigation={navigation} mode="full"/>;
