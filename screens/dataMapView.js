@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import ShadowedBox from '../components/ShadowedBox';
 
-export default function ManagerIndividualStationDataScreen({ route, navigation }) {
+export default function dataMapView({ route, navigation }) {
 	const [stationModalVisible, setStationModalVisible] = useState(false);
 	const {zipcode} = route.params
 

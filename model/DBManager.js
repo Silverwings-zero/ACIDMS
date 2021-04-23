@@ -24,6 +24,9 @@ class DBManager {
         this.store = firebase.storage();
     }
 
+    getCrimeData(id) {
+        return this.dbh.collection("APD2021").doc(id).get()
+    }
 }
     // get<Type> return: Promise<Snapshot>
     // https://firebase.google.com/docs/reference/js/firebase.firestore.QuerySnapshot

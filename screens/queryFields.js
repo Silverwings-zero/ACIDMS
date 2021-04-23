@@ -7,7 +7,7 @@ import DatePicker from 'react-native-datepicker';
 
 
 
-export default function PickYourRunner({route, navigation }) {
+export default function queryFields({route, navigation }) {
 	
 	const {zipcode} = route.params
 	const [Distance, setDistance] = useState('');

@@ -2,11 +2,14 @@ import { StyleSheet, Text, View, Image, TouchableHighlight, TouchableOpacity } f
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import ShadowedBox from '../components/ShadowedBox';
+import { dbManager } from '../model/DBManager';
 
-export default function ManagerIndividualStationDataScreen({ route, navigation }) {
+export default function dataListView({ route, navigation }) {
 	const [stationModalVisible, setStationModalVisible] = useState(false);
 	const {zipcode, Distance, sDate, eDate, sTime, eTime, Neighborhood, Category} = route.params
 	console.log(zipcode, Distance, sDate.length, eDate, sTime, eTime, Neighborhood, Category)
+	console.log("crime data below:")
+	console.log("crimedata: " + dbManager.getCrimeData('021320347'))
 	// //const stationId = navigation.state
 	// const stationId = route.params['stationId'];
 	// //const stationID = JSON.stringify(stationId)

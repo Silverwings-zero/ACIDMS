@@ -4,7 +4,7 @@ import ShadowedBox from '../components/ShadowedBox';
 
 
 
-export default function PickYourRole({ navigation }) {
+export default function zipcodeEntry({ navigation }) {
 	
 
 	const [text, setText] = useState('');
