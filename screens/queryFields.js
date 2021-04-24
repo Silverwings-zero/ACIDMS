@@ -215,13 +215,13 @@ export default function queryFields({route, navigation }) {
 					} else {
 						navigation.navigate('dataListView', {
 							zipcode: zipcode, 
-							Distance: Distance, 
+							distance: Distance,
 							sDate: sDate,
 							eDate: eDate,
 							sTime: sTime,
 							eTime: eTime,
-							Neighborhood: Neighborhood,
-							Category: Category
+							neighborhood: Neighborhood,
+							category: Category
 						})
 					}
 				}}>
