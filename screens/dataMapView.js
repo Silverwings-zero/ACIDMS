@@ -1,38 +1,42 @@
-import { StyleSheet, Text, View, Image, TouchableHighlight, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import { StyleSheet, Text, View, AppRegistry, Image, TouchableHighlight, TouchableOpacity } from 'react-native';
+import React, { useState, Component} from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import ShadowedBox from '../components/ShadowedBox';
+import MapView from 'react-native-maps';
+import Marker from 'react-native-maps';
 
 export default function dataMapView({ route, navigation }) {
 	const [stationModalVisible, setStationModalVisible] = useState(false);
-	const {zipcode} = route.params
-
+	const {zipcode, coordinatesList} = route.params;
+	console.log(coordinatesList)
 	return (
 		<View style={styles.container}>
 			
-			<ShadowedBox width={'80%'} height={'10%'} margin={10}>
-				<View style={styles.rowView}>
-
-					<Text style={{
-						fontSize: 17, 
-						fontWeight:"bold",
-						margin: 8,
-					}}>
-						Your zipcode is: 
-					</Text>
-
-					<Text style={{
-						fontSize: 17, 
-						fontWeight:"bold",
-						margin: 8,
-					}}>
-						{zipcode}
-					</Text>
-
-				</View>
-			</ShadowedBox>
+			<MapView
+				style = {styles.map}
+				initialRegion={{
+					latitude: 33.7490,
+					longitude: -84.3880,
+					latitudeDelta: 0.0922,
+					longitudeDelta: 0.0421,
+				}}
+				>
+					{coordinatesList.map((marker,i) => (
+						<Marker
+							key={i}
+							coordinate={{
+								latitude:marker[0],
+								longitude:marker[1],
+							}}
+							pinColor={"#ffd1dc"}
+						/>
+					))}
+			</MapView>
+			
 		</View>
 	);
+					
+	
 }
 
 const styles = StyleSheet.create({
@@ -41,6 +45,13 @@ const styles = StyleSheet.create({
 		backgroundColor: '#f2f2f2',
 		alignItems: 'center',
 		justifyContent: 'flex-start',
+	},
+	map: {
+		left: 0,
+		right: 0,
+		top: 0,
+		bottom: 0,
+		position: 'absolute'
 	},
 	normalText: {
 		fontSize: 17,
