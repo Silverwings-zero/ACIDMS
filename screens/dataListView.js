@@ -43,6 +43,7 @@ export default function dataListView({ route, navigation }) {
 	const [latitude, setlatitude] = useState([]);
 	const [city, setcity] = useState([]);
 	const [state, setstate] = useState([]);
+	
 
 	//const alldata  = dbManager.getall()
 
@@ -111,6 +112,13 @@ export default function dataListView({ route, navigation }) {
 		return  Math.round(a * 100 / b);
 	}
 
+	const coordinatesList = locList.map(item => {
+		return [item["lat"], item["long"]]
+	});
+
+	//console.log(coordinatesList)
+
+
 	const locListitem = locList.map(item => {
 		return (
 			<ShadowedBox 
@@ -178,7 +186,7 @@ export default function dataListView({ route, navigation }) {
 						flexDirection: "column",
 						alignContent: 'flex-start',
 						justifyContent: 'center',
-						marginLeft: 40 
+						marginLeft: 50 
 					}}> 
 						
 						<View style={styles.rowView}>
@@ -253,7 +261,7 @@ export default function dataListView({ route, navigation }) {
 					height={'40%'} 
 					margin={0} 
 					touchable
-					onPress={() => navigation.navigate('dataMapView', {zipcode: zipcode})}>
+					onPress={() => navigation.navigate('dataMapView', {zipcode: zipcode, coordinatesList: coordinatesList})}>
 					<View style={{
 						justifyContent: 'flex-start',
 						marginLeft: "10%"
