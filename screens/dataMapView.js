@@ -8,7 +8,7 @@ import Marker from 'react-native-maps';
 export default function dataMapView({ route, navigation }) {
 	const [stationModalVisible, setStationModalVisible] = useState(false);
 	const {zipcode, coordinatesList} = route.params;
-	console.log(coordinatesList)
+	console.log(typeof(coordinatesList[0][0]))
 	return (
 		<View style={styles.container}>
 			
@@ -22,13 +22,14 @@ export default function dataMapView({ route, navigation }) {
 				}}
 				>
 					{coordinatesList.map((marker,i) => (
-						<Marker
-							key={i}
+						<MapView.Marker
+							onLoad={() => this.forceUpdate()}
+							key={i+ "_" + Date.now()}
 							coordinate={{
-								latitude:marker[0],
-								longitude:marker[1],
+								latitude: Number(marker[0]),
+								longitude:Number(marker[1]),
 							}}
-							pinColor={"#ffd1dc"}
+							pinColor={"#ff0000"}
 						/>
 					))}
 			</MapView>
