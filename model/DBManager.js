@@ -25,7 +25,7 @@ class DBManager {
         this.store = firebase.storage();
     }
 
-    function getCrimeData(user_coords, distance, sDate, eDate, sTime, eTime, neighborhood, category) {
+    getCrimeData(user_coords, distance, sDate, eDate, sTime, eTime, neighborhood, category) {
         var query = this.dbh.collection("APD2021")
 
         if (distance != null) {
@@ -62,7 +62,7 @@ class DBManager {
              .catch((error) => {
                  console.log("Error getting documents: ", error);
              });
-        })
+        }
     }
 
 
@@ -98,7 +98,7 @@ class DBManager {
     }
 
 
-}
+
     // get<Type> return: Promise<Snapshot>
     // https://firebase.google.com/docs/reference/js/firebase.firestore.QuerySnapshot
     // https://firebase.google.com/docs/reference/js/firebase.firestore.DocumentSnapshot
