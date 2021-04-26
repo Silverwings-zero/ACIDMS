@@ -2,7 +2,25 @@ import { StyleSheet, Text, View, Image, TouchableHighlight, TouchableOpacity } f
 import React, { useState, useEffect} from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import ShadowedBox from '../components/ShadowedBox';
-import { dbManager } from '../model/DBManager';
+//import { dbManager } from '../model/DBManager';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+	apiKey: "AIzaSyDS3EfFs_qTlQWz2nOT-rzxRZdqVM4OaVY",
+	authDomain: "acid-ms.firebaseapp.com",
+	projectId: "acid-ms",
+	storageBucket: "acid-ms.appspot.com",
+	messagingSenderId: "653698928838",
+	appId: "1:653698928838:web:3338f38a2334a2740847c7",
+	measurementId: "G-0T8ZW56YRT"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  var db = firebase.firestore();
+
 
 export default function dataListView({ route, navigation }) {
 	const locList = [
@@ -43,7 +61,7 @@ export default function dataListView({ route, navigation }) {
 	const [latitude, setlatitude] = useState([]);
 	const [city, setcity] = useState([]);
 	const [state, setstate] = useState([]);
-
+	const [crimeData, setcrimeData] = useState([]);
     const [od, setod] = useState(0);
 //	const d = dbManager.getRecordById("021320347");
 
@@ -64,7 +82,6 @@ export default function dataListView({ route, navigation }) {
 
 
 
-
 		
 	useEffect(() => {
 
@@ -73,19 +90,50 @@ export default function dataListView({ route, navigation }) {
 		})
 		.then((response) => response.json())
 		.then((json) => {
-//			console.log(json)
+			console.log(json)
 			setlatitude(json["lat"])
 			setlongitude(json["lng"])
 			setcity(json["acceptable_city_names"][0]["city"])
 			setstate(json["acceptable_city_names"][0]["state"])
 		})
 
+
+		const crimeDatas = [];
+		var query = db.collection('APD2021');
+		if (neighborhood != ""){
+			query = query.where('neighborhood', '==', capitalize(neighborhood.toLowerCase()))
+		}
+		if (category != "") {
+            query = query.where('UC2_Literal', '==', category)
+		}
+		
+		
+		query.get()
+            .then(snapshot => {
+                snapshot.docs.forEach(ins => {
+                    let currentID = ins.id
+                    let appObj = { ...ins.data(), ['id']: currentID }
+                    crimeDatas.push(appObj)
+
+                    crimeDatas.push(ins.data())
+			})
+			setcrimeData(crimeDatas)
+        })
+
+
 	}, []);
 
 //	console.log(longitude)
 //	console.log(latitude)
-    dbManager.getCrimeData(latitude, longitude, Number(distance), Date.parse(sDate), Date.parse(eDate), neighborhood, category);
+	//const theList = dbManager.getCrimeData(latitude, longitude, Number(distance), Date.parse(sDate), Date.parse(eDate), neighborhood, category);
+	console.log(crimeData)
     console.log("#####################################")
+
+
+	
+    function capitalize(str){
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
 
 	const textColor = (text) => {
 		let rate = Number(text);
@@ -104,14 +152,14 @@ export default function dataListView({ route, navigation }) {
 		return  Math.round(a * 100 / b);
 	}
 
-	const coordinatesList = locList.map(item => {
+	const coordinatesList = crimeData.map(item => {
 		return [item["lat"], item["long"]]
 	});
 
 	//console.log(coordinatesList)
 
 
-	const locListitem = locList.map(item => {
+	const locListitem = crimeData.map(item => {
 		return (
 			<ShadowedBox 
 				width={'90%'}  
