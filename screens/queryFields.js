@@ -86,7 +86,7 @@ export default function queryFields({route, navigation }) {
 					<DatePicker
       					date={sDate}
 						onDateChange={setsDate}
-						defaultValue={sDate}
+						placeholder="select date"
 						/>
 
 					<Text style={{
@@ -100,42 +100,7 @@ export default function queryFields({route, navigation }) {
 					<DatePicker
       					date={eDate}
 						onDateChange={seteDate}
-						defaultValue={eDate}
-						/>
-				</View>
-			</ShadowedBox>
-			
-			<ShadowedBox width={'80%'} height={'10%'} margin={10}>
-				<View style={styles.rowView}>
-
-					<Text style={{
-						fontSize: 17, 
-						fontWeight:"bold",
-						margin: 4,
-					}}>
-						Time
-					</Text>
-
-					<TextInput
-							style={{height: 35, marginRight: 30}}
-							placeholder="HH:MM"
-							onChangeText={sTime => setsTime(sTime)}
-							defaultValue={sTime}
-						/>
-
-					<Text style={{
-						fontSize: 17, 
-						fontWeight:"bold",
-						margin: 4,
-					}}>
-						To 
-					</Text>
-
-					<TextInput
-							style={{height: 35, marginRight: 30}}
-							placeholder="HH:MM"
-							onChangeText={eTime => seteTime(eTime)}
-							defaultValue={eTime}
+						placeholder="select date"
 						/>
 				</View>
 			</ShadowedBox>
@@ -180,13 +145,13 @@ export default function queryFields({route, navigation }) {
 
 					<DropDownPicker
 						items={[
-							{label: 'larceny from vehicle', value: 'LARCENY-FROM VEHICLE'},
-							{label: 'larceny-non vehicle', value: 'LARCENY-NON VEHICLE'},
-							{label: 'auto theft', value: 'AUTO THEFT'},
-							{label: 'aggregated assault', value: 'AGG ASSAULT'},
-							{label: 'burglary', value: 'BURGLARY'},
-							{label: 'robbery', value: 'ROBBERY'},
-							{label: 'aggregated assault', value: 'AGG ASSAULT'},
+						    {label: 'None', value: ''},
+							{label: 'Larceny - From Vehicle', value: 'LARCENY-FROM VEHICLE'},
+							{label: 'Larceny - Non Vehicle', value: 'LARCENY-NON VEHICLE'},
+							{label: 'Auto Theft', value: 'AUTO THEFT'},
+							{label: 'Aggregated Assault', value: 'AGG ASSAULT'},
+							{label: 'Burglary', value: 'BURGLARY'},
+							{label: 'Robbery', value: 'ROBBERY'},
 						]}
 						defaultIndex={0}
 						containerStyle={{height: 40, width: 150}}
@@ -218,8 +183,8 @@ export default function queryFields({route, navigation }) {
 							distance: Distance,
 							sDate: sDate,
 							eDate: eDate,
-							sTime: sTime,
-							eTime: eTime,
+//							sTime: sTime,
+//							eTime: eTime,
 							neighborhood: Neighborhood,
 							category: Category
 						})

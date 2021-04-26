@@ -37,27 +37,34 @@ export default function dataListView({ route, navigation }) {
 			"long": -84.389521
 		  }
 	]
-	const {zipcode, Distance, sDate, eDate, sTime, eTime, Neighborhood, Category} = route.params
+	const {zipcode, distance, sDate, eDate, neighborhood, category} = route.params
 	//console.log(zipcode, Distance, sDate.length, eDate, sTime, eTime, Neighborhood, Category)
 	const [longitude, setlongitude] = useState([]);
 	const [latitude, setlatitude] = useState([]);
 	const [city, setcity] = useState([]);
 	const [state, setstate] = useState([]);
-	
 
-	//const alldata  = dbManager.getall()
+    const [od, setod] = useState(0);
+//	const d = dbManager.getRecordById("021320347");
 
-	// var crimeref = dbManager.getCrimeData();
-	// var allCities = crimeref.get()
-	// 	.then(snapshot => {
-	// 		snapshot.forEach(doc => {
-	// 			console.log(doc.id, '=>', doc.data());
-	// 		});
-	// 		console.log("end")
-	// 	})
-	// 	.catch(err => {
-	// 		console.log('Error getting documents', err);
-	// 	});
+
+//	var ref = dbManager.dbh.collection("APD2021");
+
+//        ref.get().then((querySnapshot) => {
+//                  querySnapshot.forEach((doc) => {
+//                      // doc.data() is never undefined for query doc snapshots
+//                        doc.ref.update({occur_date: Date.parse(doc.data().occur_date)});
+//                        console.log(doc.id, " => ", (doc.data().occur_date));
+//
+//                  });
+//              })
+//              .catch((error) => {
+//                  console.log("Error getting documents: ", error);
+//              });
+
+
+
+
 		
 	useEffect(() => {
 
@@ -66,7 +73,7 @@ export default function dataListView({ route, navigation }) {
 		})
 		.then((response) => response.json())
 		.then((json) => {
-			console.log(json)
+//			console.log(json)
 			setlatitude(json["lat"])
 			setlongitude(json["lng"])
 			setcity(json["acceptable_city_names"][0]["city"])
@@ -75,25 +82,10 @@ export default function dataListView({ route, navigation }) {
 
 	}, []);
 
-	console.log(longitude)
-	console.log(latitude)
-
-
-
-	//const res = getArticlesFromApi("https://www.zipcodeapi.com/rest/" + "DemoOnly00H8pb5zIgB5Vn3N8kn2ZHQBrq5rNvLc41Kz40f0NROEND8os7rSwEXi" + "/info.json/"+ zipcode +"/degrees")
-	//console.log(res)
-	//console.log(crimeref)
-
-	console.log("#####################################")
-	// //const stationId = navigation.state
-	// const stationId = route.params['stationId'];
-	// //const stationID = JSON.stringify(stationId)
-	// console.log(Station.getStationDrinksDataByID(stationId))
-	
-	// const stationData = Station.getStationInventoryDataByID(stationId)
-	
-	// const drinksData = Station.getStationDrinksDataByID(stationId)
-	// // console.log(drinksData)
+//	console.log(longitude)
+//	console.log(latitude)
+    dbManager.getCrimeData(latitude, longitude, Number(distance), Date.parse(sDate), Date.parse(eDate), neighborhood, category);
+    console.log("#####################################")
 
 	const textColor = (text) => {
 		let rate = Number(text);
@@ -146,7 +138,7 @@ export default function dataListView({ route, navigation }) {
 							fontSize: 17, 
 							margin: 8,
 						}}>
-							Date {item.occur_date} Time {item.occur_time}
+							Date {item.occur_date}
 						</Text>
 
 						<Text style={{
@@ -196,7 +188,7 @@ export default function dataListView({ route, navigation }) {
 								fontWeight:"bold",
 								margin: 8,
 							}}>
-								Coordinates: 
+								Coordinates:
 							</Text>
 
 							<Text style={{

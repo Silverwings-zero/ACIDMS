@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import 'firebase/firestore';
+import * as Firestore from 'firebase/firestore';
 import AsyncStorage from '@react-native-community/async-storage';
 import React from 'react';
 
@@ -25,31 +25,101 @@ class DBManager {
         this.store = firebase.storage();
     }
 
-    function getCrimeData(user_coords, distance, sDate, eDate, sTime, eTime, neighborhood, category) {
-        var query = this.dbh.collection("APD2021")
+    getCrimeData(user_lat, user_long, distance, sDate, eDate, neighborhood, category) {
+        var query = this.dbh.collection("APD2021");
 
-        if (distance != null) {
-            query = query.where()
+        if (distance != 0) {
+            var min_lat = user_lat - distance / 69;
+            var max_lat = user_lat + distance / 69;
+            var min_long = user_long - distance / 55;
+            var max_long = user_long + distance / 55;
+
+            query = query.where('lat', '>=', min_lat);
+            query = query.where('lat', '<=', max_lat);
+
+            console.log("TYPE: ")
+            console.log(query.length);
+            var query = query.get();
+
+            query = query.where('long', '>=', min_long);
+            query = query.where('long', '<=', max_long);
         }
 
-        if (sDate != null && eDate != null) {
-            query = query.where("")
-        } else if (sDate != null) {
-
-        } else if (eDate != null) {
-
+        if (!Number.isNaN(sDate) || !Number.isNaN(eDate)) {
+            var query = query.get();
+            if (sDate != null) {
+                query = query.where("occur_date", ">=", sDate);
+            }
+            if (eDate != null) {
+                query = query.where("occur_date", "<=", eDate);
+            }
         }
 
-        if (sTime != null && eTime != null) {
-            query = query.where("")
-        } else if (sTime != null) {
+//        if (sTime != "" || eTime != "") {
+//            if (sTime == "") {
+//              sTime = "00:00";
+//            }
+//            if (eTime == "") {
+//              eTime = "23:59" ;
+//            }
+//            var sHour;
+//            var sMin;
+//            var eHour;
+//            var eMin;
+//            [sHour, sMin] = sTime.split(':');
+//            [eHour, eMin] = eTime.split(':');
+//            sHour = parseInt(sHour);  // 0
+//            sMin = parseInt(sMin);    // 0
+//            eHour = parseInt(eHour);  // 0
+//            eMin = parseInt(eMin);    // 59
+//
+//            console.log("TIME INPUTS:");
+//            console.log(sTime, eTime, sHour, eHour, sMin, eMin);
+//            var range = [];
+//
+//            if (sHour < eHour) {
+//            for (var i = sHour; i < eHour; i++) {
+//              for (var j = sMin; j < 60; j++) {
+//                // solve case where i and j < 10
+//                if (i < 10) temp_i = '0'+ i;
+//                else temp_i = i;
+//                if (j < 10) temp_j = '0'+ j;
+//                else temp_j = j;
+//
+//                range.push(temp_i + ':' + temp_j);
+//              }
+//            }
+//            for (var j = 0; j <= eMin; j++) {
+//              // solve case where eHour and j < 10
+//              if (eHour < 10) temp_eHour = '0'+ eHour;
+//              else temp_eHour = eHour;
+//              if (j < 10) temp_j = '0'+ j;
+//              else temp_j = j;
+//
+//              range.push(temp_eHour + ':' + temp_j);
+//            }
+//            } else if (sHour == eHour) {
+//            for (var j = sMin; j <= eMin; j++) {
+//              if (eHour < 10) temp_eHour = '0'+ eHour;
+//              else temp_eHour = eHour;
+//              if (j < 10) temp_j = '0'+ j;
+//              else temp_j = j;
+//
+//              range.push(temp_eHour + ':' + temp_j);
+//            }
+//          }
+//
+//
+//          query = query.where('occur_time', 'in', range);
+//        }
 
-        } else if (eTime != null) {
 
+        if (neighborhood != "") {
+            query = query.where('neighborhood', '==', this.capitalize(neighborhood.toLowerCase()))
         }
 
-        if (neighborhood != null) {
-            query = query.where("neighborhood", "==", neighborhood)
+        if (category != "") {
+            query = query.where('UC2_Literal', '==', category)
         }
 
         query.get()
@@ -62,41 +132,26 @@ class DBManager {
              .catch((error) => {
                  console.log("Error getting documents: ", error);
              });
-        })
     }
 
-
-    function getRecordByCategory(category) {
-        return this.dbh.collection("APD2021").where("UC2_Literal", "==", category.toUpperCase())
-            .get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    // doc.data() is never undefined for query doc snapshots
-                    console.log(doc.id, " => ", doc.data());
-                });
-            })
-            .catch((error) => {
-                console.log("Error getting documents: ", error);
-            });
+    getRecordById(id) {
+        this.dbh.collection("APD2021").doc(id)
+            .get().then((doc) => {
+            if (doc.exists) {
+                console.log("Document data:", doc.data().occur_date);
+//                return doc.data().occur_date;
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
     }
 
-    function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
-        var R = 6371; // Radius of the earth in km
-        var dLat = deg2rad(lat2-lat1);  // deg2rad below
-        var dLon = deg2rad(lon2-lon1);
-        var a =
-            Math.sin(dLat/2) * Math.sin(dLat/2) +
-            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-            Math.sin(dLon/2) * Math.sin(dLon/2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        var d = R * c; // Distance in km
-        return d;
+    capitalize(str){
+        return str.charAt(0).toUpperCase() + str.slice(1);
     }
-
-    function deg2rad(deg) {
-        return deg * (Math.PI/180)
-    }
-
 
 }
     // get<Type> return: Promise<Snapshot>
