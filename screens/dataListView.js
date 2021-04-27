@@ -62,7 +62,12 @@ export default function dataListView({ route, navigation }) {
 	const [city, setcity] = useState([]);
 	const [state, setstate] = useState([]);
 	const [crimeData, setcrimeData] = useState([]);
-    const [od, setod] = useState(0);
+
+    let radius = Number(distance);
+    let startDate = Date.parse(sDate);
+    let endDate = Date.parse(eDate);
+
+
 //	const d = dbManager.getRecordById("021320347");
 
 
@@ -80,12 +85,9 @@ export default function dataListView({ route, navigation }) {
 //                  console.log("Error getting documents: ", error);
 //              });
 
-
-
-		
 	useEffect(() => {
 
-		fetch("https://www.zipcodeapi.com/rest/DemoOnly00H8pb5zIgB5Vn3N8kn2ZHQBrq5rNvLc41Kz40f0NROEND8os7rSwEXi/info.json/"+zipcode+"/degrees", {
+		fetch("https://www.zipcodeapi.com/rest/DemoOnly00JHkbsPMfb0T6eq8en4sPle0se06SraJNmrGpikirpDyFKy0boV2HyI/info.json/"+zipcode+"/degrees", {
 			method: 'GET',
 		})
 		.then((response) => response.json())
@@ -93,16 +95,26 @@ export default function dataListView({ route, navigation }) {
 			console.log(json)
 			setlatitude(json["lat"])
 			setlongitude(json["lng"])
-			setcity(json["acceptable_city_names"][0]["city"])
-			setstate(json["acceptable_city_names"][0]["state"])
+			setcity(json["city"])
+			setstate(json["state"])
 		})
-
 
 		const crimeDatas = [];
 		var query = db.collection('APD2021');
+
+		if (!Number.isNaN(startDate) || !Number.isNaN(endDate)) {
+            if (startDate != null) {
+                query = query.where("occur_date", ">=", startDate);
+            }
+            if (endDate != null) {
+                query = query.where("occur_date", "<=", endDate);
+            }
+        }
+
 		if (neighborhood != ""){
 			query = query.where('neighborhood', '==', capitalize(neighborhood.toLowerCase()))
 		}
+
 		if (category != "") {
             query = query.where('UC2_Literal', '==', category)
 		}
@@ -110,29 +122,48 @@ export default function dataListView({ route, navigation }) {
 		
 		query.get()
             .then(snapshot => {
-                snapshot.docs.forEach(ins => {
-                    let currentID = ins.id
-                    let appObj = { ...ins.data(), ['id']: currentID }
-                    crimeDatas.push(appObj)
-
+                for (var i in snapshot.docs) {
+                    const ins = snapshot.docs[i]
                     crimeDatas.push(ins.data())
-			})
+
+                    if (crimeDatas.length >= 200) {
+                        break;
+                    }
+                }
 			setcrimeData(crimeDatas)
         })
+    }, []);
+
+    let crimeDataCopy = crimeData;
+//        filter radius
+
+    if (!Number.isNaN(latitude) && !Number.isNaN(longitude) && crimeData.length > 0 && radius != 0) {
+        var min_lat = latitude - radius / 69;
+        var max_lat = latitude + radius / 69;
+        var min_long = longitude - radius / 55;
+        var max_long = longitude + radius / 55;
+        console.log("square: ");
+        console.log(min_lat, max_lat, min_long, max_long);
+
+        crimeDataCopy = [];
+        for (var i in crimeData) {
+            if (crimeData[i]["lat"] > min_lat && crimeData[i]["lat"] < max_lat && crimeData[i]["long"] > min_long && crimeData[i]["long"] < max_long) {
+                crimeDataCopy.push(crimeData[i]);
+            }
+        }
+    }
 
 
-	}, []);
-
-//	console.log(longitude)
-//	console.log(latitude)
-	//const theList = dbManager.getCrimeData(latitude, longitude, Number(distance), Date.parse(sDate), Date.parse(eDate), neighborhood, category);
-	console.log(crimeData)
     console.log("#####################################")
+    console.log(crimeDataCopy)
 
 
-	
-    function capitalize(str){
+    function capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    function unixToDate(num) {
+        return new Date(num).toLocaleDateString("en-US");
     }
 
 	const textColor = (text) => {
@@ -152,14 +183,14 @@ export default function dataListView({ route, navigation }) {
 		return  Math.round(a * 100 / b);
 	}
 
-	const coordinatesList = crimeData.map(item => {
+	const coordinatesList = crimeDataCopy.map(item => {
 		return [item["lat"], item["long"]]
 	});
 
 	//console.log(coordinatesList)
 
 
-	const locListitem = crimeData.map(item => {
+	const locListitem = crimeDataCopy.map(item => {
 		return (
 			<ShadowedBox 
 				width={'90%'}  
@@ -186,7 +217,7 @@ export default function dataListView({ route, navigation }) {
 							fontSize: 17, 
 							margin: 8,
 						}}>
-							Date {item.occur_date}
+							Date {unixToDate(item.occur_date)}
 						</Text>
 
 						<Text style={{
