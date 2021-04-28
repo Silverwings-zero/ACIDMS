@@ -2,17 +2,18 @@ import { StyleSheet, Text, View, AppRegistry, Image, TouchableHighlight, Touchab
 import React, { useState, Component} from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import ShadowedBox from '../components/ShadowedBox';
-import MapView from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import Marker from 'react-native-maps';
 
-export default function dataMapView({ route, navigation }) {
-	const [stationModalVisible, setStationModalVisible] = useState(false);
-	const {zipcode, coordinatesList} = route.params;
+export default function heatMapView({ route, navigation }) {
+//	const [stationModalVisible, setStationModalVisible] = useState(0);
+	const {coordinatesList} = route.params;
 	console.log(typeof(coordinatesList[0][0]))
 	return (
 		<View style={styles.container}>
 			
 			<MapView
+			    provider={PROVIDER_GOOGLE}
 				style = {styles.map}
 				initialRegion={{
 					latitude: 33.7490,
@@ -21,47 +22,16 @@ export default function dataMapView({ route, navigation }) {
 					longitudeDelta: 0.0421,
 				}}
 				>
-					{coordinatesList.map((marker,i) => (
-						<MapView.Marker
-							onLoad={() => this.forceUpdate()}
-							key={i+ "_" + Date.now()}
-							coordinate={{
-								latitude: Number(marker[0]),
-								longitude:Number(marker[1]),
-							}}
-							pinColor={"#ff0000"}
-						/>
-					))}
+                <MapView.Heatmap points={coordinatesList}
+                                 opacity={1}
+                                 radius={20}
+                                 maxIntensity={100}
+                                 gradientSmoothing={10}
+                                 heatmapMode={"POINTS_DENSITY"}/>
+
 			</MapView>
-			<View style={{
-                flexDirection: 'row',
-                justifyContent: 'center',
-            }}>
-                <ShadowedBox
-                    width={'30%'}
-                    height={'40%'}
-                    margin={0}
-                    touchable
-                    onPress={() => navigation.navigate('heatMapView', {coordinatesList: coordinatesList})}>
-                    <View style={{
-                        justifyContent: 'flex-start',
-                        marginLeft: "10%"
-                    }}>
-
-                        <Text style={{
-                            fontSize: 17,
-                            fontWeight:"bold",
-                            margin: 4,
-                        }}>
-                            HeatMap
-                        </Text>
-
-                    </View>
-                </ShadowedBox>
-            </View>
+			
 		</View>
-
-
 	);
 					
 	

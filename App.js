@@ -52,6 +52,7 @@ import zipcodeEntry from './screens/zipcodeEntry';
 import queryFields from './screens/queryFields';
 import dataListView from './screens/dataListView';
 import dataMapView from './screens/dataMapView';
+import heatMapView from './screens/heatMapView'
 
 
 const Stack = createStackNavigator();
@@ -96,6 +97,14 @@ export default function App() {
 									return <HyppoeHeader navigation={navigation} mode="full"/>;
 								}
 							}}/>
+						<Stack.Screen
+                            name="heatMapView"
+                            component={heatMapView}
+                            options={{
+                                header: ({ navigation, props }) => {
+                                    return <HyppoeHeader navigation={navigation} mode="full"/>;
+                                }
+                            }}/>
 						<Stack.Screen
 							name="queryFields"
 							component={queryFields}
