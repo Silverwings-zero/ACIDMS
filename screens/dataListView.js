@@ -87,7 +87,7 @@ export default function dataListView({ route, navigation }) {
 
 	useEffect(() => {
 
-		fetch("https://www.zipcodeapi.com/rest/DemoOnly00JHkbsPMfb0T6eq8en4sPle0se06SraJNmrGpikirpDyFKy0boV2HyI/info.json/"+zipcode+"/degrees", {
+		fetch("https://www.zipcodeapi.com/rest/DemoOnly00CY0Jepn60Lzvqi6UiGdoemypWceFBBdkG4ru3Y8JLcrVRsN3xm5YDZ/info.json/"+zipcode+"/degrees", {
 			method: 'GET',
 		})
 		.then((response) => response.json())
