@@ -27,7 +27,11 @@ export default function queryFields({route, navigation }) {
 
 	
 	return (
-		<ScrollView>
+		<ScrollView style = {{
+			flexDirection: "column",
+			marginLeft: 15,
+			width: '110%'
+		}}>
 			<ShadowedBox width={'80%'} height={'10%'} margin={10}>
 				<View style={styles.rowView}>
 

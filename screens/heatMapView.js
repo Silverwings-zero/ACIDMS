@@ -2,13 +2,13 @@ import { StyleSheet, Text, View, AppRegistry, Image, TouchableHighlight, Touchab
 import React, { useState, Component} from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import ShadowedBox from '../components/ShadowedBox';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import Marker from 'react-native-maps';
 
 export default function heatMapView({ route, navigation }) {
 //	const [stationModalVisible, setStationModalVisible] = useState(0);
 	const {coordinatesList} = route.params;
-	console.log(typeof(coordinatesList[0][0]))
+	console.log(coordinatesList)
 	return (
 		<View style={styles.container}>
 			
@@ -22,13 +22,14 @@ export default function heatMapView({ route, navigation }) {
 					longitudeDelta: 0.0421,
 				}}
 				>
-                <MapView.Heatmap points={coordinatesList}
-                                 opacity={1}
-                                 radius={20}
-                                 maxIntensity={100}
-                                 gradientSmoothing={10}
-                                 heatmapMode={"POINTS_DENSITY"}/>
-
+				<MapView.Heatmap 
+					//onLoad={() => this.forceUpdate()}
+					points={coordinatesList}
+					opacity={0.7}
+					radius={20}
+					maxIntensity={100}
+                    gradientSmoothing={10}
+					heatmapMode={"POINTS_DENSITY"}/>
 			</MapView>
 			
 		</View>

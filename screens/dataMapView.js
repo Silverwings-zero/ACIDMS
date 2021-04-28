@@ -8,7 +8,7 @@ import Marker from 'react-native-maps';
 export default function dataMapView({ route, navigation }) {
 	const [stationModalVisible, setStationModalVisible] = useState(false);
 	const {zipcode, coordinatesList} = route.params;
-	console.log(typeof(coordinatesList[0][0]))
+	//console.log(typeof(coordinatesList[0][0]))
 	return (
 		<View style={styles.container}>
 			
@@ -26,39 +26,13 @@ export default function dataMapView({ route, navigation }) {
 							onLoad={() => this.forceUpdate()}
 							key={i+ "_" + Date.now()}
 							coordinate={{
-								latitude: Number(marker[0]),
-								longitude:Number(marker[1]),
+								latitude: Number(marker["latitude"]),
+								longitude:Number(marker["longtitude"]),
 							}}
 							pinColor={"#ff0000"}
 						/>
 					))}
 			</MapView>
-			<View style={{
-                flexDirection: 'row',
-                justifyContent: 'center',
-            }}>
-                <ShadowedBox
-                    width={'30%'}
-                    height={'40%'}
-                    margin={0}
-                    touchable
-                    onPress={() => navigation.navigate('heatMapView', {coordinatesList: coordinatesList})}>
-                    <View style={{
-                        justifyContent: 'flex-start',
-                        marginLeft: "10%"
-                    }}>
-
-                        <Text style={{
-                            fontSize: 17,
-                            fontWeight:"bold",
-                            margin: 4,
-                        }}>
-                            HeatMap
-                        </Text>
-
-                    </View>
-                </ShadowedBox>
-            </View>
 		</View>
 
 

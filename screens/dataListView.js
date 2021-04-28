@@ -184,7 +184,7 @@ export default function dataListView({ route, navigation }) {
 	}
 
 	const coordinatesList = crimeDataCopy.map(item => {
-		return [item["lat"], item["long"]]
+		return {latitude: item["lat"], longtitude:item["long"], weight: 5}
 	});
 
 	//console.log(coordinatesList)
@@ -330,7 +330,7 @@ export default function dataListView({ route, navigation }) {
 				<ShadowedBox 
 					width={'30%'} 
 					height={'40%'} 
-					margin={0} 
+					margin={5} 
 					touchable
 					onPress={() => navigation.navigate('dataMapView', {zipcode: zipcode, coordinatesList: coordinatesList})}>
 					<View style={{
@@ -348,6 +348,28 @@ export default function dataListView({ route, navigation }) {
 
 					</View>
 				</ShadowedBox>
+
+				<ShadowedBox
+                    width={'30%'}
+                    height={'40%'}
+                    margin={5}
+                    touchable
+                    onPress={() => navigation.navigate('heatMapView', {coordinatesList: coordinatesList})}>
+                    <View style={{
+                        justifyContent: 'flex-start',
+                        marginLeft: "10%"
+                    }}>
+
+                        <Text style={{
+                            fontSize: 17,
+                            fontWeight:"bold",
+                            margin: 4,
+                        }}>
+                            HeatMap
+                        </Text>
+
+                    </View>
+                </ShadowedBox>
 			</View>
 			</View>
 			
