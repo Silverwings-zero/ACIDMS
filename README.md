@@ -1,31 +1,11 @@
-# Hyppoe Inventory Management
-
-Georgia Tech Junior Design Fall 2020
-
-## Release Note
-
-### New feature for this release
-1. Full user interface flows
-   - Users can self-assign the roles and then be directed to the corresponding Manager/Server/Runner dashboard.
-   - All user type dashboards can direct users to the pages they have access to according to the [*Hyppoe Inventory Management documentation*](https://drive.google.com/file/d/16iMUmYBmkAYJLbivg2otWMDnI0DlYC66/view?usp=sharing).
-
-2. Full backend support for the frontend to interact with the database
-   - Add and distribute drinks and pair items for your events.
-   - Watch for remaining stock of each station of the event as well as the main inventory.
-   - Watch status of Runners and check sales of Servers.
-   - Initialize transfer/return jobs between stations and main inventory.
-   - Manage transfer/return jobs and update their status.
-
-3. Database support from Google Firebase
-   - Cloud Firestore is used to store the designed data entities for this application.
+# ACIDS
+Atlanta Police Identification Database System
+Georgia Tech CS4440 Project Spring 2021
 
 ### Known bugs and defects
-- Uploading images for new drink types hasn’t been implemented due to different native behavior across iOS and Android for using images from camera roll.
-   - React Native and Expo provides very limited access to the file system of the mobile device. Could avoid this if the project is written in native language to the machine (E.G. Swift/Objective-C for iOS, Java/Kotlin for Android) 
-   - Need a lot of processing since Expo file APIs only support reading files as string, and we didn't have enough time or experience to accomplish the file processing.
-   - Users could directly upload the image for their new drinks to firebase as a work-around. Make sure to manually update the icon url link in drink type information in the firebase as well.
-- Notifications regarding new job status or low inventory stock hasn’t been implemented.
-- Cloud Firestore currently applies basic security rules for test mode. The security rules need to be updated before deploying to production.
+- input zipcode outside of Atlanta will give no results at all since the database only includes crime incidents in atlanta
+- You have to change the api key in the file dataListView.js(line 90) to the most updated api key in http://www.zipcodeapi.com/API zipcode to location information. It is changing everyday
+- API Location information stop showing after 20 or so queries, because of API limits
 
 ## Install Guide
 Follow the intructions below step-by-step to run our application on your end.
@@ -44,7 +24,7 @@ Download and install latest LTS version of Node.js supported on your operating s
 ### Download Instruction
 Clone the current repository to your local directory using:
 ```
-git clone https://github.com/VictorYu379/hyppoe-junior-design.git
+git clone https://github.com/Silverwings-zero/ACIDMS.git
 ```
 
 ### Installation Guide
