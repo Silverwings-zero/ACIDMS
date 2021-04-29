@@ -87,7 +87,7 @@ export default function dataListView({ route, navigation }) {
 
 	useEffect(() => {
 
-		fetch("https://www.zipcodeapi.com/rest/DemoOnly00CY0Jepn60Lzvqi6UiGdoemypWceFBBdkG4ru3Y8JLcrVRsN3xm5YDZ/info.json/"+zipcode+"/degrees", {
+		fetch("https://www.zipcodeapi.com/rest/DemoOnly00uGNfBh3Cj5NhmhGHQZ0eOQKS7WzatOqzpt4VqJZVdNIYsdbz8PZAxB/info.json/"+zipcode+"/degrees", {
 			method: 'GET',
 		})
 		.then((response) => response.json())
@@ -126,7 +126,7 @@ export default function dataListView({ route, navigation }) {
                     const ins = snapshot.docs[i]
                     crimeDatas.push(ins.data())
 
-                    if (crimeDatas.length >= 200) {
+                    if (crimeDatas.length >= 300) {
                         break;
                     }
                 }
@@ -184,7 +184,7 @@ export default function dataListView({ route, navigation }) {
 	}
 
 	const coordinatesList = crimeDataCopy.map(item => {
-		return {latitude: item["lat"], longtitude:item["long"], weight: 5}
+		return {latitude: item["lat"], longitude:item["long"], weight: 20}
 	});
 
 	//console.log(coordinatesList)
@@ -354,7 +354,7 @@ export default function dataListView({ route, navigation }) {
                     height={'40%'}
                     margin={5}
                     touchable
-                    onPress={() => navigation.navigate('heatMapView', {coordinatesList: coordinatesList})}>
+                    onPress={() => navigation.navigate('heatMapView', {userCoords: [latitude, longitude], coordinatesList: coordinatesList})}>
                     <View style={{
                         justifyContent: 'flex-start',
                         marginLeft: "10%"
