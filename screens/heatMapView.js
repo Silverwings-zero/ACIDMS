@@ -7,7 +7,8 @@ import Marker from 'react-native-maps';
 
 export default function heatMapView({ route, navigation }) {
 //	const [stationModalVisible, setStationModalVisible] = useState(0);
-	const {coordinatesList} = route.params;
+//onLoad={() => this.forceUpdate()}
+	const {userCoords, coordinatesList} = route.params;
 	console.log(coordinatesList)
 	return (
 		<View style={styles.container}>
@@ -22,12 +23,24 @@ export default function heatMapView({ route, navigation }) {
 					longitudeDelta: 0.0421,
 				}}
 				>
-				<MapView.Heatmap 
-					//onLoad={() => this.forceUpdate()}
+				<MapView.Marker
+                    onLoad={() => this.forceUpdate()}
+                    key={"here"}
+                    coordinate={{
+                        latitude: Number(userCoords[0]),
+                        longitude:Number(userCoords[1]),
+                    }}
+                    pinColor={"#DB4437"}
+                />
+				<MapView.Heatmap
 					points={coordinatesList}
-					opacity={0.7}
-					radius={20}
+					opacity={1}
+					radius={50}
 					maxIntensity={100}
+					gradient={{
+                     colors: ["#79BC6A", "#BBCF4C", "#EEC20B", "#F29305", "#E50000"],
+                     startPoints: [0.02, 0.06, 0.1, 0.2, 0.3],
+                     colorMapSize: 256}}
                     gradientSmoothing={10}
 					heatmapMode={"POINTS_DENSITY"}/>
 			</MapView>

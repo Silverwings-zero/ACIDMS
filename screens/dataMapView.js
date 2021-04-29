@@ -27,7 +27,7 @@ export default function dataMapView({ route, navigation }) {
 							key={i+ "_" + Date.now()}
 							coordinate={{
 								latitude: Number(marker["latitude"]),
-								longitude:Number(marker["longtitude"]),
+								longitude:Number(marker["longitude"]),
 							}}
 							pinColor={"#ff0000"}
 						/>
