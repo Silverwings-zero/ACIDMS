@@ -176,11 +176,14 @@ export default function queryFields({route, navigation }) {
 					if (Distance.length == 0 && 
 						sDate.length == 0 && 
 						eDate.length ==0 && 
-						sTime.length == 0 && 
-						eTime.length ==0 && 
 						Neighborhood.length == 0 && 
 						Category.length == 0){
 						alert('must enter at least one field for query');
+					} 
+					else if (sDate.length == 0 && eDate.length != 0) {
+						alert('Date range incomplete');
+					} else if (sDate.length != 0 && eDate.length == 0) {
+						alert('Date range incomplete');
 					} else {
 						navigation.navigate('dataListView', {
 							zipcode: zipcode, 
