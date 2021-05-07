@@ -1,5 +1,5 @@
 # ACIDS
-Atlanta Police Identification Database System
+Atlanta's Crime Incidents Database System
 Georgia Tech CS4440 Project Spring 2021
 
 ## Data Preparation and Setup
