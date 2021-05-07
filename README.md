@@ -2,13 +2,20 @@
 Atlanta Police Identification Database System
 Georgia Tech CS4440 Project Spring 2021
 
-### Known bugs and defects
-- input zipcode outside of Atlanta will give no results at all since the database only includes crime incidents in atlanta
-- You have to change the api key in the file dataListView.js(line 90) to the most updated api key in http://www.zipcodeapi.com/API zipcode to location information. It is changing everyday
-- API Location information stop showing after 20 or so queries, because of API limits
+## Data Preparation and Setup
 
-## Install Guide
-Follow the intructions below step-by-step to run our application on your end.
+**Which database system(s) and version(s) are you using? How do we install it/them? (providing a link to official documentation will be enough)**<br /><br />
+Firebase 9.10 https://firebase.google.com/docs/web/setup
+
+**How do we download the data you used for your project? Please do NOT submit ALL the data with your code (Submitting a very small portion (< 5 MB) so that we can run the demo might be okay)**<br /><br />
+The data is in Firebase. Since Firebase configuration is in our code base, there is no need to download or load the data.
+
+## Application and code
+
+**Which programming language(s) and version(s) are you using (Python, Java 8, C++, etc.)?**<br /><br />
+Javascript ES6
+
+**List the third-party libraries needed to execute your code and how do we install them (For ex. MySQL/neo4j connector for Python)**
 
 ### Pre-requisites
 Any common computers and common operating systems that support Node.js and Git.
@@ -56,4 +63,25 @@ To run on **emulators**
   - npm is now distributed with Node.js. Make sure you download and install the latest LTS version of Node.js, which should automatically install the LTS version of npm. ([*link to official download*](https://nodejs.org/en/download/))
 - `Package not found`
   - Install the latest version of the package specified using `npm install` and retry.
+
+## Code Documentation and References
+
+**Did you use some code from GitHub or other sources? If yes provide the link.**<br /><br />
+https://github.com/VictorYu379/hyppoe-junior-design
+
+**If you used some online code, what changes did you make to the code?**<br /><br />
+We only used the dummy page to make this app runnable. All the functional classes are written by ourselves.
+
+**Give a list of files in your submission which are written by you.**<br /><br />
+* dataListView.js
+* dataMapView.js
+* heatMapView.js
+* queryFields.js
+* zipcodeEntry.js
+
+### Known bugs and defects
+- input zipcode outside of Atlanta will give no results at all since the database only includes crime incidents in atlanta
+- You have to change the api key in the file dataListView.js(line 90) to the most updated api key in http://www.zipcodeapi.com/API zipcode to location information. It is changing everyday
+- API Location information stop showing after 20 or so queries, because of API limits
+
   
